@@ -39,20 +39,8 @@ float calculateDistanceFor(Vector2User from, Vector2User to)
     return sqrt(pow(to.x - from.x, 2) + pow(to.y - from.y, 2));
 }
 
-float calculateMagnitude(Vector2User vector) {
-    return sqrt(pow(vector.x, 2) + pow(vector.y, 2));
-}
-
-float getAngle(Vector2User vector1, Vector2User vector2) {
-    float pointProduct = vector1.x * vector2.x + vector1.y * vector2.y;
-    float vector1Magnitude = calculateMagnitude(vector1);
-    float vector2Magnitude = calculateMagnitude(vector2);
-
-    return acos(pointProduct / (vector1Magnitude * vector2Magnitude));
-}
-
-float calculateArea(float angleA, float angleC) {
-    return  0.5 * longAB * longBC * sin(angleA) + 0.5 * longAD * longDC * sin(angleC);
+float calculateAreaForRegular(float width, float heigth) {
+    return width * heigth;
 }
 
 int main()
@@ -101,15 +89,18 @@ int main()
 
     system("cls");
 
+    //Impresion de valores
     cout << "Vector1: ";
     printVectorCoordinates(vector1);
 
     cout << "Vector2: ";
     printVectorCoordinates(vector2);
 
-
     cout << "Vector3: ";
     printVectorCoordinates(vector3);
+    
+    cout << "Vector4: ";
+    printVectorCoordinates(vector4);
 
     
      longAB = calculateDistanceFor(vector1, vector2);
@@ -131,10 +122,7 @@ int main()
         {
             cout << "\nSe forma un cuadrilatero" << endl;
 
-            float angleA = getAngle(vector1, vector4);
-            float angleC = getAngle(vector2, vector3);
-
-            float area = calculateArea(angleA, angleC);
+            float area = calculateAreaForRegular(longAB, longAD);
 
             cout << "\n El area del cuadrilatero es: " << area << endl;
         }
